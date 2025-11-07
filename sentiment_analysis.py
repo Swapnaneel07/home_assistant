@@ -13,8 +13,8 @@ def get_sentiment(text):
     
     # Using thresholds from your main.py
     if compound > 0.3:
-        return "Happy ?"
+        return "Happy"
     elif compound < -0.1:
-        return "Stressed ?"
+        return "Stressed"
     else:
-        return "Neutral ?"
+        return "Neutral"
