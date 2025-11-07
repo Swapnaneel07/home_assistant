@@ -25,23 +25,23 @@ def process_command(command, sentiment):
         return (False, response, action_desc) 
 
     # --- 2. Fan Commands ---
-    if "turn on fan" in command or "start fan" in command:
+    if "turn on fan" in command or "start fan" in command or "activate fan" in command or "switch on fan" in command or "fan on" in command or "fan start" in command or "turn the fan on" in command:
         dc.set_device_state('fan', 'on')
-        response = "Fan control pin set to low, simulating power ON."
+        response = "Sure,  Fan control pin set to low, simulating power ON."
         action_desc = "Fan ON"
             
-    elif "turn off fan" in command or "stop fan" in command:
+    elif "turn off fan" in command or "stop fan" in command or "deactivate fan" in command or "switch off fan" in command or "fan off" in command or "fan stop" in command or "turn the fan off" in command:
         dc.set_device_state('fan', 'off')
-        response = "Fan control pin set to high, simulating power OFF."
+        response = "Sure,  Fan control pin set to high, simulating power off."
         action_desc = "Fan OFF"
 
     # --- 3. Sentiment-Aware Lights ---
     elif "lights" in command:
-        if sentiment == "Stressed ?":
+        if sentiment == "Stressed":
             dc.set_device_state('light', 'on')
             response = "I detect stress. Turning on a soft light to help you relax."
             action_desc = "Calming Light ON"
-        elif sentiment == "Happy ?":
+        elif sentiment == "Happy":
             dc.set_device_state('light', 'off')
             response = "You sound cheerful! Adjusting light to a preferred setting."
             action_desc = "Light Control OFF"
@@ -51,10 +51,10 @@ def process_command(command, sentiment):
             
     # --- 4. Sentiment-Aware Music ---
     elif "music" in command:
-        if sentiment == "Stressed ?":
+        if sentiment == "Stressed":
             response = "I recommend playing some soothing, calming music now."
             action_desc = "Suggest Calming"
-        elif sentiment == "Happy ?":
+        elif sentiment == "Happy":
             response = "Great mood! Initiating cheerful, energetic music."
             action_desc = "Suggest Energetic"
         else:
