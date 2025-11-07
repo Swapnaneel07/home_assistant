@@ -4,6 +4,8 @@ import text_to_speech as tts
 import sentiment_analysis as sa
 import device_control as dc
 import lcd_display as lcd
+import telljokes as jk
+import weather_fetcher as wf
 import time
 
 # This variable will store the last mentioned device for context
@@ -80,8 +82,37 @@ def process_command(command, sentiment):
             response = dc.set_device_state(last_mentioned_device, 'off')
         action_desc = f"{last_mentioned_device} {command}"
         last_mentioned_device = None # Clear context
-            
+    # --- Jokes ---
+    elif "joke" in command:
+        joke = jk.get_joke()
+        response = joke
+        action_desc = "Told a joke"
+    # --- NEW: Weather Command Logic ---
+    elif "weather" in command or "forecast" in command:
+        # Simple extraction: look for "in [city]" or "for [city]"
+        
+        # Try to find a specific city mentioned (e.g., "what is the weather in Paris")
+        city = None
+        
+        # This is a very simple way to grab the city name
+        if 'in' in command:
+            parts = command.split('in')
+            if len(parts) > 1:
+                city = parts[1].strip().split()[0] # Grab the first word after 'in'
+        elif 'for' in command:
+            parts = command.split('for')
+            if len(parts) > 1:
+                city = parts[1].strip().split()[0]
+                
+        # Handle the special case where the user might say the trigger word again
+        if city == Config.TRIGGER_WORD:
+            city = None 
+
+        weather_response = wf.get_current_weather(city)
+        response = weather_response
+        action_desc = f"Weather in {city if city else Config.DEFAULT_LOCATION}"           
     return (True, response, action_desc) 
+
 
 def main():
     # --- 1. Initialization ---

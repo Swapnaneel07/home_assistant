@@ -3,3 +3,5 @@ PyAudio
 RPi.GPIO
 nltk
 smbus2
+pyjokes
+request
