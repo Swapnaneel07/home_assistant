@@ -10,4 +10,4 @@ def speak(text):
     -s150 sets the speed to 150 words-per-minute.
     """
     print(f"ASSISTANT: {text}")
-    os.system(f'espeak "{text}" -s150')
+    os.system(f'espeak "{text}" -s130')
