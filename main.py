@@ -6,6 +6,7 @@ import device_control as dc
 import lcd_display as lcd
 import telljokes as jk
 import weather_fetcher as wf
+import config as Config
 import time
 
 # This variable will store the last mentioned device for context
