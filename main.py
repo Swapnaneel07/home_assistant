@@ -34,9 +34,19 @@ def process_command(command, sentiment):
         dc.set_device_state('fan', 'off')
         response = "Sure,  Fan control pin set to high, simulating power off."
         action_desc = "Fan OFF"
+    # --- Light Commands ---
+    elif "turn on light" in command or "start light" in command or "activate light" in command or "switch on light" in command or "light on" in command or "light start" in command or "turn the light on" in command:
+        dc.set_device_state('light', 'on')
+        response = "Sure, Light control pin set to low, simulating power ON."
+        action_desc = "Light ON"
+            
+    elif "turn off light" in command or "stop light" in command or "deactivate light" in command or "switch off light" in command or "light off" in command or "light stop" in command or "turn the light off" in command:
+        dc.set_device_state('light', 'off')
+        response = "Sure, Light control pin set to high, simulating power off."
+        action_desc = "Light OFF"
 
     # --- 3. Sentiment-Aware Lights ---
-    elif "lights" in command:
+    elif "Stressed" in command or "Happy" in command:
         if sentiment == "Stressed":
             dc.set_device_state('light', 'on')
             response = "I detect stress. Turning on a soft light to help you relax."
