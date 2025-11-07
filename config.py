@@ -5,6 +5,7 @@ class Config:
     # GPIO Pins
     RELAY_PIN_FAN = 17      # GPIO 17 (Fan/Device 1)
     RELAY_PIN_LIGHT = 27    # GPIO 27 (Light/Device 2)
+    RELAY_PIN_CALM_LIGHT = 22 # GPIO 22 (Calm Light/Device 3)
     
     # Relay Logic (Active-Low from your code)
     DEVICE_ON = GPIO.LOW    # LOW = ON
