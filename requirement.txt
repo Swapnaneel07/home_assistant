@@ -2,3 +2,4 @@ speechrecognition
 PyAudio
 RPi.GPIO
 nltk
+smbus2
