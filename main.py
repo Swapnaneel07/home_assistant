@@ -85,7 +85,7 @@ def process_command(command, sentiment):
         last_mentioned_device = None # Clear context
     # --- Jokes ---
     elif "joke" in command:
-        joke = jk.get_joke()
+        joke = jk.tell_joke()
         response = joke
         action_desc = "Told a joke"
     # --- NEW: Weather Command Logic ---
