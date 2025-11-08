@@ -13,7 +13,7 @@ class Config:
     
     # Audio/Speech
     MIC_INDEX = 1           # Your specific mic index
-    TRIGGER_WORD = "assistant"
+    TRIGGER_WORD = "pi"
     
     # I2C LCD (Matches your old main.py)
     LCD_ADDRESS = 0x27      
