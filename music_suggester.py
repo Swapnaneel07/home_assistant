@@ -6,7 +6,8 @@ import requests
 import random 
 
 # Base URL for TheAudioDB API
-BASE_URL = "https://theaudiodb.com/api/v1/json/1" # '1' is the public demo key for all endpoints
+API_KEY_FREE = "1"
+BASE_URL = f"https://theaudiodb.com/api/v1/json/{API_KEY_FREE}" # '1' is the public demo key for all endpoints
 
 def _search_artist(mood_keyword):
     """Searches for an artist based on the mood keyword."""
