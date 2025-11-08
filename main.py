@@ -97,7 +97,7 @@ def process_command(command, sentiment):
 
         weather_response = wf.get_current_weather(city)
         response = weather_response
-        action_desc = f"Weather in {city if city else Config.DEFAULT_LOCATION}"           
+        action_desc = f"Weather in {city if city else Config.DEFAULT_LOCATION_NAME}"           
     return (True, response, action_desc) 
 
 
