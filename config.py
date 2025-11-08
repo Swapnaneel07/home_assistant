@@ -21,7 +21,7 @@ class Config:
 
     DEFAULT_LATITUDE = 22.56750
     DEFAULT_LONGITUDE = 88.37000
-    DEFAULT_LOCATION = "Kolkata"
+    DEFAULT_LOCATION_NAME = "Kolkata"
 
     GREEN_LED = 25
     RED_LED = 23

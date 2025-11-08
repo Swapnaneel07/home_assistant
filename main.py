@@ -73,7 +73,7 @@ def process_command(command, sentiment):
         joke = jk.tell_joke()
         response = joke
         action_desc = "Told a joke"
-        
+
     # --- NEW: Weather Command Logic ---
     elif "weather" in command or "forecast" in command:
         # Simple extraction: look for "in [city]" or "for [city]"
@@ -92,7 +92,7 @@ def process_command(command, sentiment):
                 city = parts[1].strip().split()[0]
                 
         # Handle the special case where the user might say the trigger word again
-        if city == Config.TRIGGER_WORD:
+        if city == "assistant" or city == "Neel":
             city = None 
 
         weather_response = wf.get_current_weather(city)
