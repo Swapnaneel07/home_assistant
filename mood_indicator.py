@@ -6,9 +6,9 @@ import time
 
 def all_off():
     """Turns off all mood indicator LEDs."""
-    GPIO.output(Config.GREEN_LED, Config.DEVICE_OFF)
-    GPIO.output(Config.YELLOW_LED, Config.DEVICE_OFF)
-    GPIO.output(Config.RED_LED, Config.DEVICE_OFF)
+    GPIO.output(Config.GREEN_LED, GPIO.LOW)
+    GPIO.output(Config.YELLOW_LED, GPIO.LOW)
+    GPIO.output(Config.RED_LED, GPIO.LOW)
 
 def display_mood(sentiment):
     """
@@ -23,12 +23,12 @@ def display_mood(sentiment):
 
     if "Happy" in sentiment or "Positive" in sentiment:
         # Green LED for Positive
-        GPIO.output(Config.GREEN_LED, Config.DEVICE_ON)
+        GPIO.output(Config.GREEN_LED, Config.DEVICE_OFF)
         print("Mood LED: Green (Happy) ON")
         
     elif "Stressed" in sentiment or "Negative" in sentiment:
         # Red LED for Negative
-        GPIO.output(Config.RED_LED, Config.DEVICE_ON)
+        GPIO.output(Config.RED_LED, Config.DEVICE_OFF)
         print("Mood LED: Red (Stressed) ON")
         
     else:
