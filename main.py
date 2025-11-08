@@ -7,6 +7,8 @@ import lcd_display as lcd
 import telljokes as jk
 import weather_fetcher as wf
 import config as Config
+import mood_indicator as mi
+import music_suggester as ms
 import time
 
 # This variable will store the last mentioned device for context
@@ -20,6 +22,7 @@ def process_command(command, sentiment):
     global last_mentioned_device
     response = f"You seem {sentiment}. I'm ready for a command." # Default
     action_desc = f"Mood: {sentiment}"
+    mi.display_mood(sentiment)
 
     # --- 1. Exit Command (Your "Neel" message is here) ---
     if "exit" in command or "shutdown" in command:
@@ -48,31 +51,13 @@ def process_command(command, sentiment):
         response = "Sure, Light control pin set to high, simulating power off."
         action_desc = "Light OFF"
 
-    # --- 3. Sentiment-Aware Lights ---
-    elif "Stressed" in command or "Happy" in command:
-        if sentiment == "Stressed":
-            dc.set_device_state('light', 'on')
-            response = "I detect stress. Turning on a soft light to help you relax."
-            action_desc = "Calming Light ON"
-        elif sentiment == "Happy":
-            dc.set_device_state('light', 'off')
-            response = "You sound cheerful! Adjusting light to a preferred setting."
-            action_desc = "Light Control OFF"
-        else:
-            response = "Light settings remain unchanged."
-            action_desc = "Light Neutral"
             
     # --- 4. Sentiment-Aware Music ---
-    elif "music" in command:
-        if sentiment == "Stressed":
-            response = "I recommend playing some soothing, calming music now."
-            action_desc = "Suggest Calming"
-        elif sentiment == "Happy":
-            response = "Great mood! Initiating cheerful, energetic music."
-            action_desc = "Suggest Energetic"
-        else:
-            response = "I'm not sure what music to play. Your mood is neutral."
-            action_desc = "Music Neutral"
+    elif "music" in command or "feeling" in command or "play a song" in command:
+        # Call the new music suggester function
+        response = ms.get_track_suggestion(sentiment)
+        action_desc = "Music Suggestion"
+    
 
     # --- 5. Context-Aware (e.g., "turn it off") ---
     # This is from our new design, you can remove if you don't want it
@@ -88,6 +73,7 @@ def process_command(command, sentiment):
         joke = jk.tell_joke()
         response = joke
         action_desc = "Told a joke"
+        
     # --- NEW: Weather Command Logic ---
     elif "weather" in command or "forecast" in command:
         # Simple extraction: look for "in [city]" or "for [city]"

@@ -8,6 +8,10 @@ GPIO.setwarnings(False)
 # Set up pins with default state as OFF
 GPIO.setup(Config.RELAY_PIN_FAN, GPIO.OUT, initial=Config.DEVICE_OFF)
 GPIO.setup(Config.RELAY_PIN_LIGHT, GPIO.OUT, initial=Config.DEVICE_OFF)
+GPIO.setup(Config.RELAY_PIN_CALM_LIGHT, GPIO.OUT, initial=Config.DEVICE_OFF)
+GPIO.setup(Config.GREEN_LED, GPIO.OUT, initial=Config.DEVICE_OFF)
+GPIO.setup(Config.YELLOW_LED, GPIO.OUT , initial=Config.DEVICE_OFF)
+GPIO.setup(Config.RED_LED, GPIO.OUT , initial=Config.DEVICE_OFF)
 
 def set_device_state(device_name, state):
     """
@@ -20,6 +24,8 @@ def set_device_state(device_name, state):
         pin = Config.RELAY_PIN_FAN
     elif device_name == 'light':
         pin = Config.RELAY_PIN_LIGHT
+    elif device_name == 'claming_lights':
+        pin = Config.RELAY_PIN_CALM_LIGHT
     else:
         return f"Unknown device: {device_name}"
         
