@@ -41,12 +41,12 @@ def process_command(command, sentiment):
         response = "Sure,  Fan control pin set to high, simulating power off."
         action_desc = "Fan OFF"
     # --- Device Commands ---
-    elif "turn on device 2" in command or "start device 2" in command or "activate device 2" in command or "switch on device 2" in command or "device 2 on" in command or "device 2 start" in command or "turn the device 2 on" in command:
+    elif "turn on device 2" in command or "start device 2" in command or "activate device 2" in command or "switch on device 2" in command or "device to on" in command or "device 2 start" in command or "turn the device to on" in command:
         dc.set_device_state('device 2', 'on')
         response = "Sure, Device 2 control pin set to low, simulating power ON."
         action_desc = "Device 2 ON"
             
-    elif "turn off device 2" in command or "stop device 2" in command or "deactivate device 2" in command or "switch off device 2" in command or "device 2 off" in command or "device 2 stop" in command or "turn the device 2 off" in command:
+    elif "turn off device 2" in command or "stop device 2" in command or "deactivate device 2" in command or "switch off device 2" in command or "device to off" in command or "device to stop" in command or "turn the device to off" in command:
         dc.set_device_state('device 2', 'off')
         response = "Sure, Device 2 control pin set to high, simulating power off."
         action_desc = "Device 2 OFF"
@@ -132,7 +132,7 @@ def process_command(command, sentiment):
         response = "Sure, Lights Turned ON."
         action_desc = "Lights ON"
             
-    elif "turn off lights" in command or "stop lights" in command or "deactivate lights" in command or "switch off lights" in command or "lights off" in command or "lights stop" in command or "turn the lights off" in command:
+    elif "turn off lights" in command or "turn of lights" in command or "stop lights" in command or "deactivate lights" in command or "switch off lights" in command or "lights off" in command or "lights stop" in command or "turn the lights off" in command:
         # Corrected device name to 'lights' and state to 'off'
         dc.set_device_state('lights', 'off') 
         response = "Sure, Lights turned off."
