@@ -109,7 +109,7 @@ def process_command(command, sentiment):
         response = weather_response
         action_desc = f"Weather in {city if city else "Kolkata"}"           
     
-    elif "feeling" in command or "mood" in command or "streessed" in command or "happy" in command or "sad" in command or "unhappy" in command or "not good" in command or "depressed" in command or "down" in command or "angry" in command or "frustrated" in command or "upset" in command or "mad" in command or "good" in command or "great" in command or "fantastic" in command or "joyful" in command or "excited" in command or "cheerful" in command or "content" in command or "pleased" in command:
+    elif "feeling" in command or "mood" in command or "stressed" in command or "happy" in command or "sad" in command or "unhappy" in command or "not good" in command or "depressed" in command or "down" in command or "angry" in command or "frustrated" in command or "upset" in command or "mad" in command or "good" in command or "great" in command or "fantastic" in command or "joyful" in command or "excited" in command or "cheerful" in command or "content" in command or "pleased" in command:
         if "sad" in command or "unhappy" in command or "not good" in command or "depressed" in command or "down" in command or "angry" in command or "frustrated" in command or "upset" in command or "mad" in command:
             sentiment = "stressed"
             # CORRECTED: Should turn ON calming light for stress
