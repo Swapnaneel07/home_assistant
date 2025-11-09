@@ -26,6 +26,6 @@ class Config:
     DEFAULT_LOCATION_NAME = "Kolkata"
     
     GREEN_LED = 25 #happy
-    RED_LED = 23
-    YELLOW_LED = 24
+    RED_LED = 23 #sad
+    YELLOW_LED = 24 #neutral
 
