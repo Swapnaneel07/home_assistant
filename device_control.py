@@ -1,5 +1,6 @@
 # device_control.py
 import RPi.GPIO as GPIO
+import mood_indicator as mi
 from config import Config
 
 GPIO.setmode(GPIO.BCM)
@@ -50,6 +51,9 @@ def set_device_state(device_name, state):
 def cleanup():
     """Cleans up GPIO pins on exit."""
     print("Cleaning up GPIO pins...")
-    GPIO.output(Config.RELAY_PIN_FAN, Config.DEVICE_OFF)
-    GPIO.output(Config.RELAY_PIN_LIGHT, Config.DEVICE_OFF)
+    GPIO.output(Config.RELAY_PIN_FAN, Config.DEVICE_OFF) # Turn off fan
+    GPIO.output(Config.GPIO_LIGHT, Config.DEVICE_ON)  # Turn off lights
+    GPIO.output(Config.RELAY_PIN_DEVICE_2, Config.DEVICE_OFF) 
+    GPIO.output(Config.RELAY_PIN_DEVICE_3, Config.DEVICE_OFF)
+    mi.all_off()  # Turn off mood indicator LEDs
     GPIO.cleanup()

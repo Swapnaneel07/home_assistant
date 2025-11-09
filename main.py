@@ -129,8 +129,8 @@ def process_command(command, sentiment):
             
     elif "turn off lights" in command or "stop lights" in command or "deactivate lights" in command or "switch off lights" in command or "lights off" in command or "lights stop" in command or "turn the lights off" in command:
         dc.set_device_state('light', 'on')
-        response = "Sure, Device 2 control pin set to high, simulating power off."
-        action_desc = "Device 2 OFF"
+        response = "Sure, Lights turned off."
+        action_desc = "Lights OFF"
     return (True, response, action_desc) 
 
 
