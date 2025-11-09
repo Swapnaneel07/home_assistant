@@ -112,23 +112,29 @@ def process_command(command, sentiment):
     elif "feeling" in command or "mood" in command:
         if "sad" in command or "unhappy" in command or "not good" in command or "depressed" in command or "down" in command or "angry" in command or "frustrated" in command or "upset" in command or "mad" in command:
             sentiment = "stressed"
-            dc.set_device_state('calming light', 'off')
-            response = "I'm sorry to hear that you're feeling stressed. I've turned on the calming light to help you relax.   You can also listen to some soothing music if you'd like."
+            # CORRECTED: Should turn ON calming light for stress
+            dc.set_device_state('calming light', 'on') 
+            response = "I'm sorry to hear that you're feeling stressed. I've turned on the calming light to help you relax. You can also listen to some soothing music if you'd like."
             action_desc = "Calming Light ON"
+            
         elif "happy" in command or "good" in command or "great" in command or "fantastic" in command or "joyful" in command or "excited" in command or "cheerful" in command or "content" in command or "pleased" in command:
             sentiment = "happy"
-            dc.set_device_state('calming light', 'on')
+            # CORRECTED: Should turn OFF calming light for happiness
+            dc.set_device_state('calming light', 'off') 
             response = "That's wonderful to hear! I've turned off the calming light to match your upbeat mood. Enjoy your day!"
             action_desc = "Calming Light OFF"
             
+
     # -- for Lights --
     elif "turn on lights" in command or "start lights" in command or "activate lights" in command or "switch on light" in command or "lights on" in command or "lights start" in command or "turn the lights on" in command:
-        dc.set_device_state('lights', 'off')
+        # Corrected state to 'on'
+        dc.set_device_state('lights', 'on') 
         response = "Sure, Lights Turned ON."
         action_desc = "Lights ON"
             
     elif "turn off lights" in command or "stop lights" in command or "deactivate lights" in command or "switch off lights" in command or "lights off" in command or "lights stop" in command or "turn the lights off" in command:
-        dc.set_device_state('light', 'on')
+        # Corrected device name to 'lights' and state to 'off'
+        dc.set_device_state('lights', 'off') 
         response = "Sure, Lights turned off."
         action_desc = "Lights OFF"
     return (True, response, action_desc) 

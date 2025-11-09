@@ -36,12 +36,23 @@ def set_device_state(device_name, state):
     else:
         return f"Unknown device: {device_name}"
         
-    if state == 'on':
-        output_state = Config.DEVICE_ON
-    elif state == 'off':
-        output_state = Config.DEVICE_OFF
-    else:
-        return f"Unknown state: {state}"
+    # --- Handle Relay Pins (Active-Low) ---
+    if device_name in ['fan', 'device 2', 'device 3']:
+        if state == 'on':
+            output_state = Config.DEVICE_ON # LOW
+        elif state == 'off':
+            output_state = Config.DEVICE_OFF # HIGH
+        else:
+            return f"Unknown state: {state}"
+    
+    # --- Handle LED Pins (Active-High) ---
+    elif device_name in ['lights', 'calming light']:
+        if state == 'on':
+            output_state = GPIO.HIGH # HIGH (LED ON)
+        elif state == 'off':
+            output_state = GPIO.LOW # LOW (LED OFF)
+        else:
+            return f"Unknown state: {state}"
         
     GPIO.output(pin, output_state)
     
