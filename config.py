@@ -25,7 +25,7 @@ class Config:
     DEFAULT_LONGITUDE = 88.37000
     DEFAULT_LOCATION_NAME = "Kolkata"
     
-    GREEN_LED = 25
+    GREEN_LED = 25 #happy
     RED_LED = 23
     YELLOW_LED = 24
 
