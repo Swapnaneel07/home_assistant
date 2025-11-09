@@ -12,7 +12,7 @@ GPIO.setup(Config.RELAY_PIN_DEVICE_3, GPIO.OUT, initial=Config.DEVICE_OFF)
 GPIO.setup(Config.GREEN_LED, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(Config.YELLOW_LED, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(Config.RED_LED, GPIO.OUT, initial=GPIO.LOW)
-GPIO.setup(Config.GPIO_LIGHT, GPIO.OUT, initial=GPIO.LOw)
+GPIO.setup(Config.GPIO_LIGHT, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(Config.GPIO_CALMING_LIGHT, GPIO.OUT, initial=GPIO.LOW)
 
 def set_device_state(device_name, state):
