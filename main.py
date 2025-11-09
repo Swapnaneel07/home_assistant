@@ -70,7 +70,7 @@ def process_command(command, sentiment):
 
     # --- 5. Context-Aware (e.g., "turn it off") ---
     # This is from our new design, you can remove if you don't want it
-    elif 'it' in command and last_mentioned_device:
+    elif 'it' in command or "that" in command and last_mentioned_device:
         if 'on' in command:
             response = dc.set_device_state(last_mentioned_device, 'on')
         elif 'off' in command:
@@ -109,7 +109,7 @@ def process_command(command, sentiment):
         response = weather_response
         action_desc = f"Weather in {city if city else "Kolkata"}"           
     
-    elif "feeling" in command or "mood" in command:
+    elif "feeling" in command or "mood" in command or "streessed" in command or "happy" in command or "sad" in command or "unhappy" in command or "not good" in command or "depressed" in command or "down" in command or "angry" in command or "frustrated" in command or "upset" in command or "mad" in command or "good" in command or "great" in command or "fantastic" in command or "joyful" in command or "excited" in command or "cheerful" in command or "content" in command or "pleased" in command:
         if "sad" in command or "unhappy" in command or "not good" in command or "depressed" in command or "down" in command or "angry" in command or "frustrated" in command or "upset" in command or "mad" in command:
             sentiment = "stressed"
             # CORRECTED: Should turn ON calming light for stress
@@ -117,7 +117,7 @@ def process_command(command, sentiment):
             response = "I'm sorry to hear that you're feeling stressed. I've turned on the calming light to help you relax. You can also listen to some soothing music if you'd like."
             action_desc = "Calming Light ON"
             
-        elif "happy" in command or "good" in command or "great" in command or "fantastic" in command or "joyful" in command or "excited" in command or "cheerful" in command or "content" in command or "pleased" in command:
+        elif 'happy' in command or "good" in command or "great" in command or "fantastic" in command or "joyful" in command or "excited" in command or "cheerful" in command or "content" in command or "pleased" in command:
             sentiment = "happy"
             # CORRECTED: Should turn OFF calming light for happiness
             dc.set_device_state('calming light', 'off') 
