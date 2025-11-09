@@ -25,8 +25,12 @@ def set_device_state(device_name, state):
     if device_name == 'fan':
         pin = Config.RELAY_PIN_FAN
     elif device_name == 'device 2':
-        pin = Config.GPIO_LIGHT
+        pin = Config.RELAY_PIN_DEVICE_2
     elif device_name == 'device 3':
+        pin = Config.RELAY_PIN_DEVICE_3
+    elif device_name == 'lights':
+        pin = Config.GPIO_LIGHT
+    elif device_name == 'calming light':
         pin = Config.GPIO_CALMING_LIGHT
     else:
         return f"Unknown device: {device_name}"

@@ -47,7 +47,7 @@ def process_command(command, sentiment):
         action_desc = "Device 2 ON"
             
     elif "turn off device 2" in command or "stop device 2" in command or "deactivate device 2" in command or "switch off device 2" in command or "device 2 off" in command or "device 2 stop" in command or "turn the device 2 off" in command:
-        dc.set_device_state('light', 'off')
+        dc.set_device_state('device 2', 'off')
         response = "Sure, Device 2 control pin set to high, simulating power off."
         action_desc = "Device 2 OFF"
     elif "turn on device 3" in command or "start device 3" in command or "activate device 3" in command or "switch on device 3" in command or "device 3 on" in command or "device 3 start" in command or "turn the device 3 on" in command:
@@ -62,7 +62,7 @@ def process_command(command, sentiment):
 
             
     # --- 4. Sentiment-Aware Music ---
-    elif "music" in command or "feeling" in command or "play a song" in command:
+    elif "music" in command or "play a song" in command:
         # Call the new music suggester function
         response = ms.get_track_suggestion(sentiment)
         action_desc = "Music Suggestion"
@@ -108,9 +108,31 @@ def process_command(command, sentiment):
         weather_response = wf.get_current_weather(city)
         response = weather_response
         action_desc = f"Weather in {city if city else "Kolkata"}"           
+    
+    elif "feeling" in command or "mood" in command:
+        if "sad" in command or "unhappy" in command or "not good" in command or "depressed" in command or "down" in command or "angry" in command or "frustrated" in command or "upset" in command or "mad" in command:
+            sentiment = "stressed"
+            dc.set_device_state('calming light', 'off')
+            response = "I'm sorry to hear that you're feeling stressed. I've turned on the calming light to help you relax.   You can also listen to some soothing music if you'd like."
+            action_desc = "Calming Light ON"
+        elif "happy" in command or "good" in command or "great" in command or "fantastic" in command or "joyful" in command or "excited" in command or "cheerful" in command or "content" in command or "pleased" in command:
+            sentiment = "happy"
+            dc.set_device_state('calming light', 'on')
+            response = "That's wonderful to hear! I've turned off the calming light to match your upbeat mood. Enjoy your day!"
+            action_desc = "Calming Light OFF"
+            
+    # -- for Lights --
+    elif "turn on lights" in command or "start lights" in command or "activate lights" in command or "switch on light" in command or "lights on" in command or "lights start" in command or "turn the lights on" in command:
+        dc.set_device_state('lights', 'off')
+        response = "Sure, Lights Turned ON."
+        action_desc = "Lights ON"
+            
+    elif "turn off lights" in command or "stop lights" in command or "deactivate lights" in command or "switch off lights" in command or "lights off" in command or "lights stop" in command or "turn the lights off" in command:
+        dc.set_device_state('light', 'on')
+        response = "Sure, Device 2 control pin set to high, simulating power off."
+        action_desc = "Device 2 OFF"
     return (True, response, action_desc) 
 
-    # -- for Lights --
 
 def main():
     # --- 1. Initialization ---
