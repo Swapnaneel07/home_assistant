@@ -4,9 +4,11 @@ import RPi.GPIO as GPIO
 class Config:
     # GPIO Pins
     RELAY_PIN_FAN = 17      # GPIO 17 (Fan/Device 1)
-    RELAY_PIN_LIGHT = 27    # GPIO 27 (Light/Device 2)
-    RELAY_PIN_CALM_LIGHT = 22 # GPIO 22 (Calm Light/Device 3)
-
+    RELAY_PIN_DEVICE_2 = 27    # GPIO 27 (Light/Device 2)
+    RELAY_PIN_DEVICE_3 = 22 # GPIO 22 (Calm Light/Device 3)
+    GPIO_LIGHT = 5        # GPIO 5 (General Light Control)
+    GPIO_CALMING_LIGHT = 6  # GPIO 6 (Calming Light Control)
+    
     # Relay Logic (Active-Low from your code)
     DEVICE_ON = GPIO.LOW    # LOW = ON
     DEVICE_OFF = GPIO.HIGH  # HIGH = OFF

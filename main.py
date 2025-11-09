@@ -40,16 +40,25 @@ def process_command(command, sentiment):
         dc.set_device_state('fan', 'off')
         response = "Sure,  Fan control pin set to high, simulating power off."
         action_desc = "Fan OFF"
-    # --- Light Commands ---
-    elif "turn on light" in command or "start light" in command or "activate light" in command or "switch on light" in command or "light on" in command or "light start" in command or "turn the light on" in command:
-        dc.set_device_state('light', 'on')
-        response = "Sure, Light control pin set to low, simulating power ON."
-        action_desc = "Light ON"
+    # --- Device Commands ---
+    elif "turn on device 2" in command or "start device 2" in command or "activate device 2" in command or "switch on device 2" in command or "device 2 on" in command or "device 2 start" in command or "turn the device 2 on" in command:
+        dc.set_device_state('device 2', 'on')
+        response = "Sure, Device 2 control pin set to low, simulating power ON."
+        action_desc = "Device 2 ON"
             
-    elif "turn off light" in command or "stop light" in command or "deactivate light" in command or "switch off light" in command or "light off" in command or "light stop" in command or "turn the light off" in command:
+    elif "turn off device 2" in command or "stop device 2" in command or "deactivate device 2" in command or "switch off device 2" in command or "device 2 off" in command or "device 2 stop" in command or "turn the device 2 off" in command:
         dc.set_device_state('light', 'off')
-        response = "Sure, Light control pin set to high, simulating power off."
-        action_desc = "Light OFF"
+        response = "Sure, Device 2 control pin set to high, simulating power off."
+        action_desc = "Device 2 OFF"
+    elif "turn on device 3" in command or "start device 3" in command or "activate device 3" in command or "switch on device 3" in command or "device 3 on" in command or "device 3 start" in command or "turn the device 3 on" in command:
+        dc.set_device_state('device 3', 'on')
+        response = "Sure, Device 3 control pin set to low, simulating power ON."
+        action_desc = "Device 3 ON"
+            
+    elif "turn off device 3" in command or "stop device 3" in command or "deactivate device 3" in command or "switch off device 3" in command or "device 3 off" in command or "device 3 stop" in command or "turn the device 3 off" in command:
+        dc.set_device_state('device 3', 'off')
+        response = "Sure, Device 3 control pin set to high, simulating power off."
+        action_desc = "Device 3 OFF"
 
             
     # --- 4. Sentiment-Aware Music ---
@@ -68,6 +77,7 @@ def process_command(command, sentiment):
             response = dc.set_device_state(last_mentioned_device, 'off')
         action_desc = f"{last_mentioned_device} {command}"
         last_mentioned_device = None # Clear context
+    
     # --- Jokes ---
     elif "joke" in command:
         joke = jk.tell_joke()
@@ -100,6 +110,7 @@ def process_command(command, sentiment):
         action_desc = f"Weather in {city if city else "Kolkata"}"           
     return (True, response, action_desc) 
 
+    # -- for Lights --
 
 def main():
     # --- 1. Initialization ---
